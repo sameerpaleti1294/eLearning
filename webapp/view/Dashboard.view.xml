@@ -1,0 +1,42 @@
+<mvc:View
+	controllerName="Elearning.controller.Dashboard"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+    xmlns:cData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page title="Dashboard">
+       	<headerContent>
+			<MenuButton text="Welcome, test">
+			<menu>
+				<Menu>
+					<MenuItem text="Log out" icon="sap-icon://log" press="onLogOut">
+					</MenuItem>
+					
+				</Menu>
+			</menu>
+		</MenuButton>
+		</headerContent>
+        <content>
+        <HBox justifyContent="SpaceBetween"> 
+            <Panel width="600px" headerText="Links">
+            <List
+                    items="{links>/Links}" >
+                    <items>
+                    <StandardListItem
+                        title="{links>name}"
+                        icon="{links>icon}"
+                        type="Navigation" 
+                        press=".navToMyCourses"/>
+                    </items>
+                </List>
+            </Panel>
+            <Panel headerText="Notifications" width="400px">
+            
+            </Panel>
+        </HBox>
+        </content>
+    </Page>
+</mvc:View>

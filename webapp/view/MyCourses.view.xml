@@ -1,0 +1,28 @@
+<mvc:View
+	controllerName="Elearning.controller.MyCourses"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+    xmlns:cData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page title="My Courses"
+    showNavButton="true"
+	navButtonPress=".onNavBack">
+       
+        <content>
+            <Panel>
+                <List id="testa"
+                    items="{courses>/Course}" >
+                        <items>
+                        <StandardListItem
+                            title="{courses>name}"
+                        />
+                        </items>
+                    </List>
+                 
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

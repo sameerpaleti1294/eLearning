@@ -1,0 +1,5 @@
+specVersion: "2.0"
+kind: project
+type: application
+metadata:
+  name: my.library

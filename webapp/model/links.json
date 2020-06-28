@@ -1,0 +1,12 @@
+{
+    "Links":[
+        {
+            "name": "My Courses",
+            "icon": "sap-icon://course-book"
+        },
+        {
+            "name": "Schedule",
+            "icon":"sap-icon://appointment-2"
+        }
+    ]
+}

@@ -14,6 +14,8 @@
 	<name>eLearning</name>
 	<description>project for ELearning</description>
 
+	<packaging>jar</packaging>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -28,10 +30,16 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>mysql</groupId>-->
+<!--			<artifactId>mysql-connector-java</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.sap.cloud.db.jdbc</groupId>
+			<artifactId>ngdbc</artifactId>
+			<version>2.3.48</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,13 +54,33 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+<build>
+	<plugins>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<configuration>
+			<archive>
+				<manifest>
+					<addClasspath>true</addClasspath>
+					<classpathPrefix>libs/</classpathPrefix>
+					<mainClass>
+						com.learning.eLearning.ELearningApplication
+					</mainClass>
+				</manifest>
+			</archive>
+		</configuration>
+	</plugin>
+
+		<plugin>
+
+		<groupId>org.springframework.boot</groupId>
+
+		<artifactId>spring-boot-maven-plugin</artifactId>
+
+	</plugin>
+	</plugins>
+
+</build>
 
 </project>

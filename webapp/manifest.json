@@ -72,6 +72,16 @@
                 "pattern":"mycourses",
                 "name":"mycourses",
                 "target":"mycourses"
+              },
+              {
+                "pattern":"courseSchedule/{courseId}",
+                "name":"courseSchedule",
+                "target":"courseSchedule"
+              },
+              {
+                "pattern":"myschedule",
+                "name":"myschedule",
+                "target":"myschedule"
               }
             ],
             "targets":{
@@ -84,8 +94,16 @@
                 "viewName":"Dashboard"
               },
               "mycourses":{
-                "viewId": "mycourses",
+                "viewId":"mycourses",
                 "viewName":"MyCourses"
+              },
+              "courseSchedule":{
+                "viewId":"courseSchedule",
+                "viewName":"CourseSchedule"
+              },
+              "myschedule":{
+                "viewId":"myschedule",
+                "viewName":"MySchedule"
               }
             }
         }

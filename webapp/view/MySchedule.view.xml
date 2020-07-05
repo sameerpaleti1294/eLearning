@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="Elearning.controller.MySchedule"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+    xmlns:u="sap.ui.unified">
+	<Page title="My Schedule"
+    showNavButton="true"
+	navButtonPress=".onNavBack">
+       
+        <content>
+            <HBox justifyContent="SpaceBetween">
+            <Panel headerText="Schedule Details" width="220%">
+                <List
+                    items="{mySchedule>/MySchedule}" >
+                      <CustomListItem>
+                        <HBox alignItems="Center">
+                            <core:Icon size="2rem" src="sap-icon://appointment-2" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" press=".navToCourseSchedulePage"/>
+                            <VBox class="sapUiLargeMarginBegin" justifyContent="Center">
+                                <Text text="{mySchedule>description}"/>
+                                <Text text="{mySchedule>courseName}"/>
+                                <HBox>
+                                    <Text text="{mySchedule>startTime}"/>
+                                    <Text text="-"/>
+                                    <Text text="{mySchedule>endTime}"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>
+                </List>
+            </Panel>
+            <Panel headerText="Calender">
+               	<u:Calendar
+				    id="calendar"
+				    select="handleCalendarSelect" />
+            </Panel>
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

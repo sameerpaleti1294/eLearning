@@ -13,15 +13,17 @@
        
         <content>
             <Panel>
-                <List id="testa"
+                <List
                     items="{courses>/Course}" >
-                        <items>
-                        <StandardListItem
-                            title="{courses>name}"
-                        />
-                        </items>
+                      <CustomListItem >
+                        <HBox alignItems="Center">
+                            <core:Icon size="2rem" src="sap-icon://course-book" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" press=".navToCourseSchedulePage"/>
+                            <VBox class="sapUiSmallMarginBegin" justifyContent="Center"  width="90%">
+                                <Link text="{courses>name}" press=".navToCourseSchedulePage"/>
+                            </VBox>
+                        </HBox>
+                    </CustomListItem>
                     </List>
-                 
             </Panel>
         </content>
     </Page>

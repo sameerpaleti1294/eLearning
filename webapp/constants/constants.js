@@ -4,7 +4,13 @@ sap.ui.define([
     'use strict';
 
     var constants = {
-        courses_url: "http://localhost:8081/api/student/getCourses/8"
+        authentication_url :"http://localhost:8081/api/authentication",
+        myCourses_url: "http://localhost:8081/api/user/getCourses/{userId}",
+        coursesSchedule_url: "http://localhost:8081/api/schedule/forCourseId/{courseId}",
+        mySchedule_url: "http://localhost:8081/api/user/getSchedules/{userId}/{date}",
+        getFile_url: "http://localhost:8081/api/files/download/{scheduleId}",
+        downloadFile_url: "http://localhost:8081/api/files/download/{scheduleId}"
+
     };
     return constants;
 });

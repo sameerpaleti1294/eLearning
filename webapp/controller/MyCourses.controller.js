@@ -11,48 +11,36 @@ sap.ui.define([
 	return Controller.extend("Elearning.controller.MyCourses", {
         onInit : function () {
             this.loadData();
-            console.log("test");
         },
-        onNavBack : function () {
-            var oHistory= History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
-            if(!sPreviousHash){
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("loginpage",{}, true);
-            } else {
-                window.history.go(-1);
-            }
+        onNavBack : function () {   
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("homepage");
+            
+        },
+        navToCourseSchedulePage: function (oEvent) {
+            var oItem = oEvent.getSource();
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("courseSchedule", {
+				courseId: window.encodeURIComponent(oItem.getBindingContext("courses").getPath().split('/')[2])
+			});
         },
         loadData: function () {
             this.getView().setBusy(true);
+            var oUserId = this.getOwnerComponent().getModel('appConstants').getData().userId;
+            var oUrl = constants.myCourses_url.replace("{userId}", oUserId);
             jQuery.ajax({
                 contentType: "application/json",
                 dataType: "json",
-                url: constants.courses_url,
+                url: oUrl,
+                type: 'GET'
             }).done(function (oResponse) {
                 this.getView().setBusy(false);
-                var oData = new JSONModel({
+                var oData = {
                     "Course": oResponse
-                });
-                this.getView().setModel(oData, "courses");
+                };
+                this.getView().getModel("courses").setData(oData);
             }.bind(this)).fail(function (oResponse) {
-                this.getView().setBusy(false);
-                var oData = new JSONModel({
-                    "Course":[
-                        {
-                            "id": 1,
-                            "name": "course 1"
-                        },
-                        {
-                            "id": 2,
-                            "name": "course 2"
-                        },
-                        {
-                            "id": 3,
-                            "name": "course 22"
-                        }
-                ]});
-                this.getView().setModel(oData, "courses");
+                MessageToast.show("Failed to load Data");
             }.bind(this));
         }
 	});

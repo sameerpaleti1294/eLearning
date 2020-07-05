@@ -10,9 +10,14 @@ sap.ui.define([
            
 
         },
-        navToMyCourses: function () {
+        navToLinks: function (oEvent) {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("mycourses");
+            if(oEvent.getSource().getTitle() === 'My Courses'){
+                oRouter.navTo("mycourses");
+            } else {
+                oRouter.navTo("myschedule");
+            }
+			
         },
         onLogOut: function () {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

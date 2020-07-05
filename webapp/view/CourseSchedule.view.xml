@@ -1,0 +1,70 @@
+<mvc:View
+	controllerName="Elearning.controller.CourseSchedule"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:tnt="sap.tnt"
+    xmlns:u="sap.ui.unified"
+    xmlns:elearning="Elearning">
+	<Page title="Course Schedule"
+    showNavButton="true"
+	navButtonPress=".onNavBack">
+       
+        <content>
+            <Panel>
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Schedule for {courses>name}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                 <List
+                    items="{courseSchedule>/CourseSchedule}" >
+                      <CustomListItem>
+                        <HBox>
+                            <core:Icon size="2rem" src="sap-icon://appointment" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+                            <VBox class="sapUiSmallMarginBegin" justifyContent="Center" width="90%" >
+                                <Text text="{courseSchedule>description}"/>
+                            </VBox>
+                            <Button
+                                icon="sap-icon://download"
+                                id="downloadBtn"
+                                enabled="{courseSchedule>hasUploadedFile}"
+                                type="Transparent"
+                                press=".downloadFile"/>
+                            <elearning:CustomFileUploader
+                                id="fileUploader"
+                                name="myFileUpload"
+                                icon="sap-icon://upload"
+                                iconOnly="true"
+                                sendXHR="true"
+                                uploadUrl="http://localhost:8081/api/files/upload/"
+                                change="handleValueChange"
+                                uploadOnChange="true"
+                                uploadComplete="handleUploadComplete"
+                                typeMissmatch="handleTypeMissmatch"
+                                style="Transparent"
+                                fileType="mp4,pdf"
+                                buttonOnly="true"
+                                enabled="{= ${courseSchedule>hasUploadedFile} !== true}">
+                                <elearning:parameters>
+                                    <u:FileUploaderParameter
+                                        name="scheduleId"
+                                        value="{courseSchedule>scheduleId}"/>
+                                </elearning:parameters>
+                            </elearning:CustomFileUploader>
+                        </HBox>
+                    </CustomListItem>
+                </List>
+            </Panel>
+<!--            <Image id="test" src=""/>-->
+<!--            <Panel>-->
+<!--                <core:HTML content="&lt;video controls width=&quot;100%&quot; height=&quot;300px&quot; id=&quot;video-player&quot; display=&quot;none&quot;&gt;-->
+<!--&lt;source src=&quot;&quot;&gt;-->
+<!--&lt;/video&gt;-->
+<!--"></core:HTML>-->
+<!--            </Panel>-->
+        </content>
+    </Page>
+</mvc:View>

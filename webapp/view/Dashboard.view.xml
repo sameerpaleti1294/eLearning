@@ -9,7 +9,7 @@
     xmlns:cData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<Page title="Dashboard">
        	<headerContent>
-			<MenuButton text="Welcome, test">
+			<MenuButton text="Welcome, {appConstants>/name}">
 			<menu>
 				<Menu>
 					<MenuItem text="Log out" icon="sap-icon://log" press="onLogOut">
@@ -29,7 +29,7 @@
                         title="{links>name}"
                         icon="{links>icon}"
                         type="Navigation" 
-                        press=".navToMyCourses"/>
+                        press=".navToLinks"/>
                     </items>
                 </List>
             </Panel>

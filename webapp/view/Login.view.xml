@@ -12,8 +12,21 @@
             <content>
             <VBox fitContainer="true" justifyContent="Top" alignItems="Center" alignContent="Center" >
                 <items>
-                <Input id="uid" placeholder="User ID" class="sapUiLargeMarginTop"></Input>
-                <Input id="pasw" placeholder="Password" type="Password"></Input>
+
+                
+                <HBox class="sapUiLargeMarginTop">
+                <Label text="Login as:" class="sapUiSmallMargin"></Label>
+                <RadioButton groupName="userType" text="Student" selected="true" select=".handleSelect"/>
+                <RadioButton groupName="userType" text="Teacher" select=".handleSelect"/>
+                </HBox>
+                <HBox>
+                <Label text="User Name:" class="sapUiSmallMargin"></Label>
+                <Input id="uid" placeholder="User Name" value="{loginDetails>/userName}" required="true"></Input>
+                </HBox>
+                <HBox>
+                <Label text="Password:" class="sapUiSmallMargin"></Label>
+                <Input id="pasw" placeholder="Password" type="Password" value="{loginDetails>/password}" required="true" class="sapUiLargeMarginLeft"></Input>
+                </HBox>
                 <Button width="12rem" text="Login" type="Emphasized" press="onLoginPress"></Button>
                 </items>
             </VBox>

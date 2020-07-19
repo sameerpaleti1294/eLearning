@@ -7,6 +7,14 @@
         {
             "name": "Schedule",
             "icon":"sap-icon://appointment-2"
+        },
+        {
+            "name": "Submissions",
+            "icon": "sap-icon://paper-plane"
+        },
+        {
+            "name": "Exam",
+            "icon": "sap-icon://validate"
         }
     ]
 }

@@ -82,6 +82,11 @@
                 "pattern":"myschedule",
                 "name":"myschedule",
                 "target":"myschedule"
+              },
+              {
+                "pattern": "parentdashboard",
+                "name": "parentdashboard",
+                "target": "parentdashboard"
               }
             ],
             "targets":{
@@ -104,6 +109,10 @@
               "myschedule":{
                 "viewId":"myschedule",
                 "viewName":"MySchedule"
+              },
+              "parentdashboard": {
+                "viewId": "parentdashboard",
+                "viewName": "ParentDashboard"
               }
             }
         }

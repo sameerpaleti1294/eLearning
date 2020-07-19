@@ -2,16 +2,16 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent",
-   "sap/m/MessageToast",
+	"sap/m/MessageToast",
     "sap/ui/core/routing/History",
     "Elearning/constants/constants",
     "sap/ui/core/format/DateFormat",
     "sap/ui/core/library"
 ], function (Controller, JSONModel, UIComponent, MessageToast, History, constants, DateFormat, coreLibrary) {
-   "use strict";
-   var CalendarType = coreLibrary.CalendarType;
+	"use strict";
+	var CalendarType = coreLibrary.CalendarType;
 
-   return Controller.extend("Elearning.controller.MySchedule", {
+	return Controller.extend("Elearning.controller.MySchedule", {
 
         onInit : function () {
             this.oFormatYyyymmdd = DateFormat.getInstance({pattern: "yyyy-MM-dd", calendarType: CalendarType.Gregorian});
@@ -20,14 +20,14 @@ sap.ui.define([
             var aSelectedDates = oCalendar.getSelectedDates(), oDate = this.oFormatYyyymmdd.format(aSelectedDates[0].getStartDate());
             this.loadData(oDate);
         },
-        onNavBack : function () {
+        onNavBack : function () {   
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oRouter.navTo("homepage");
-
+            
         },
         loadData: function (oDate) {
             var oUserID = this.getOwnerComponent().getModel('appConstants').getData().userId;
-            var oUrl = constants.mySchedule_url.replace('{userId}', oUserID).replace('{date}', oDate);
+            var oUrl = constants.mySchedule_url.replace('{userId}', oUserID).replace('{date}', oDate); 
             jQuery.ajax({
                 contentType: "application/json",
                 dataType: "json",
@@ -48,8 +48,8 @@ sap.ui.define([
             this.getView().setBusy(true);
             var oCalendar = oEvent.getSource();
             var aSelectedDates = oCalendar.getSelectedDates(), oDate = this.oFormatYyyymmdd.format(aSelectedDates[0].getStartDate());
-         this.loadData(oDate);
+			this.loadData(oDate);
         }
-   });
+	});
 
 });

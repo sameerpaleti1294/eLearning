@@ -21,7 +21,7 @@
 		</headerContent>
         <content>
         <HBox justifyContent="SpaceBetween"> 
-            <Panel width="600px" headerText="Links">
+            <Panel width="800px" headerText="Links">
             <List
                     items="{links>/Links}" >
                     <items>
@@ -34,7 +34,14 @@
                 </List>
             </Panel>
             <Panel headerText="Notifications" width="400px">
-            
+				<List>
+					<items>
+						<StandardListItem
+								title="Holiday Tomorrow"
+								icon="sap-icon://general-leave-request"/>
+						<StandardListItem title="Class Standings/Results" icon="sap-icon://marketing-campaign"/>
+					</items>
+				</List>
             </Panel>
         </HBox>
         </content>

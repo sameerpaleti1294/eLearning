@@ -11,12 +11,14 @@ sap.ui.define([
 
 	return Controller.extend("Elearning.controller.CourseSchedule", {
         onInit : function () {
+            this.getView().setModel(this.getOwnerComponent().getModel('appConstants'), 'appConstants');
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("courseSchedule").attachPatternMatched(this._onObjectMatched, this);
 	
 
         },
         _onObjectMatched: function (oEvent) {
+
             this.courseId = oEvent.getParameter("arguments").courseId;
 			this.getView().bindElement({
 				path: "/Course/" + window.decodeURIComponent(this.courseId),
@@ -77,22 +79,40 @@ sap.ui.define([
                 url: oUrl,
                 type: 'GET'
             }).done(function (oResponse) {
+
                 this.getView().setBusy(false);
-                var binaryData = [];
-                binaryData.push(oResponse);
-                var url = window.URL.createObjectURL(new Blob(binaryData, {type:"application/pdf"}))
+                var blob= new Blob([oResponse], {type:'application/pdf'})
+                var url = window.URL.createObjectURL(blob)
                 var $a = $('<a />', {
                   'href': url,
                   'download': 'download.pdf',
                   'text': "click"
                 }).hide().appendTo("body")[0].click();
-//                var oVideo= $('#video-player');
-//                                $('#video-player')[0].src = url;
+////                var oVideo= $('#video-player');
+////                                $('#video-player')[0].src = url;
             }.bind(this)).fail(function (oResponse) {
                 this.getView().setBusy(false);
                 MessageToast.show("File download Failed")
             }.bind(this));
-		}
+		},
+		saveByteArray : function(pdfName, byte) {
+            var blob = new Blob([byte], { type: "image/png" });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            var fileName = pdfName + ".png";
+            link.download = fileName;
+            link.click();
+        },
+        base64ToArrayBuffer: function(base64) {
+
+            var binaryLen = base64.length;
+            var bytes = new Uint8Array(binaryLen);
+            for (var i = 0; i < binaryLen; i++) {
+                var ascii = base64.charCodeAt(i);
+                bytes[i] = ascii;
+            }
+            return bytes;
+        }
 
 	});
 

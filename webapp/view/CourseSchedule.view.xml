@@ -37,6 +37,7 @@
                                 id="fileUploader"
                                 name="myFileUpload"
                                 icon="sap-icon://upload"
+                                visible="{=${appConstants>/role} === 'TEACHER' }"
                                 iconOnly="true"
                                 sendXHR="true"
                                 uploadUrl="http://localhost:8081/api/files/upload/"
@@ -44,10 +45,11 @@
                                 uploadOnChange="true"
                                 uploadComplete="handleUploadComplete"
                                 typeMissmatch="handleTypeMissmatch"
+                                enabled="{=${courseSchedule>hasUploadedFile} === 'false' }"
                                 style="Transparent"
                                 fileType="mp4,pdf"
                                 buttonOnly="true"
-                                enabled="{= ${courseSchedule>hasUploadedFile} !== true}">
+                                >
                                 <elearning:parameters>
                                     <u:FileUploaderParameter
                                         name="scheduleId"

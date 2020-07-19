@@ -7,7 +7,7 @@
 	xmlns:core="sap.ui.core"
 	xmlns:tnt="sap.tnt"
     xmlns:cData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<Page title="My Courses"
+	<Page title="{= ${appConstants>/role} === 'STUDENT' ? 'Enrolled Courses' : 'My Subjects'}"
     showNavButton="true"
 	navButtonPress=".onNavBack">
        

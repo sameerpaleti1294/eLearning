@@ -22,27 +22,36 @@ sap.ui.define([
         authenticateCredentials: function() {
             this.getView().setBusy(true);
             var oData = this.getView().getModel('loginDetails').getData();
-            if(oData && oData.userName && oData.role) {
-                jQuery.ajax({
-                    contentType: "application/json",
-                    dataType: "json",
-                    url: constants.authentication_url,
-                    type: 'POST',
-                    data: JSON.stringify(oData)
-                }).done(function (oResponse) {
-                    this.getView().setBusy(false);
-                    this.getView().getModel('appConstants').setData(oResponse);
-                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			        oRouter.navTo("homepage");
-                }.bind(this)).fail(function (oResponse) {
-                    this.getView().setBusy(false);
-                    MessageToast.show("Invalid User");
-                }.bind(this));
-            } else {
+            var role = oData.role;
+            if(role === 'PARENT'){
                 this.getView().setBusy(false);
-                MessageToast.show("Please Fill all the details")
+                this.getView().getModel('appConstants').setData(oData);
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("parentdashboard");
+            } else {
+                if(oData && oData.userName && oData.role) {
+                    jQuery.ajax({
+                        contentType: "application/json",
+                        dataType: "json",
+                        url: constants.authentication_url,
+                        type: 'POST',
+                        data: JSON.stringify(oData)
+                    }).done(function (oResponse) {
+                        this.getView().setBusy(false);
+                        this.getView().getModel('appConstants').setData(oResponse);
+                        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                        oRouter.navTo("homepage");
+                    }.bind(this)).fail(function (oResponse) {
+                        this.getView().setBusy(false);
+                        MessageToast.show("Invalid User");
+                    }.bind(this));
+                } else {
+                    this.getView().setBusy(false);
+                    MessageToast.show("Please Fill all the details")
+                }
             }
-            console.log('oData');
+
+
         },
         handleSelect: function(oEvent) {
             var oSelected = oEvent.getSource().getText();

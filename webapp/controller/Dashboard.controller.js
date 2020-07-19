@@ -14,8 +14,10 @@ sap.ui.define([
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             if(oEvent.getSource().getTitle() === 'My Courses'){
                 oRouter.navTo("mycourses");
-            } else {
+            } else if(oEvent.getSource().getTitle() === 'Schedule'){
                 oRouter.navTo("myschedule");
+            } else {
+
             }
 			
         },

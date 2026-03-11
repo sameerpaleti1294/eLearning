@@ -12,7 +12,7 @@
     "start": "ui5 build && ui5 serve"
   },
   "dependencies": {
-    "@ui5/cli": "^2.0.0"
+    "@ui5/cli": "^4.0.47"
   },
   "author": "",
   "license": "ISC"
